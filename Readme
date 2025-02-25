@@ -1,0 +1,52 @@
+Project Overview
+Develop a C++ command-line application for managing tasks with secure user authentication, role-based access, and persistent storage. Users can register, log in, and manage their tasks (create, read, update, delete), while tasks can be categorized, filtered, and sorted.
+
+Core Functionalities
+1. User Management
+Registration: Users sign up with a unique username and password.
+Login/Logout: Securely authenticate users and manage active sessions.
+Role-Based Access: Logged-in users can only view/modify their own tasks.
+2. Task Management
+Task Attributes:
+Task ID: Unique identifier (e.g., TASK_001).
+User ID: Links tasks to their owner.
+Title, Description, Deadline (YYYY-MM-DD), Category (e.g., Work, Study).
+Priority: LOW, MID, HIGH, URGENT (enums).
+Status: NOT_STARTED, IN_PROGRESS, COMPLETED (enums).
+Operations:
+Create: Add a new task with all attributes.
+Read: View tasks by ID, title, or category.
+Update: Edit task details (e.g., title, deadline, status).
+Delete: Remove tasks by ID.
+Search/Filter: By title, category, priority, or status.
+3. Task Organization
+Sorting: By deadline, priority, or status.
+Categorization: Assign tasks to categories (e.g., Work, Personal).
+Status Tracking: Update task progress (e.g., mark as COMPLETED).
+
+Class Design Requirements
+Class: User
+Attributes:
+std::string m_id (User ID)
+std::string m_name (Username)
+std::string m_passwd (Hashed password)
+std::vector<Task*> m_tasks (List of owned tasks)
+bool is_logged (Tracks login status)
+Functions:
+Constructors (including copy/move) and destructor.
+add_task(), delete_task(), edit_task(), list_tasks(), search_task().
+login(), logout() for session management.
+Class: Task
+Attributes:
+std::string m_task_id, m_uid, m_title, m_description, m_deadline, m_category.
+int m_prio (Priority enum), int m_status (Status enum).
+Functions:
+Constructors (including copy/move) and destructor.
+edit(), set_status(), set_prio(), display_info(), get_task_id().
+Class: TaskManager
+Attributes:
+std::vector<User*> m_users (All users).
+std::vector<Task*> m_all_tasks (All tasks).
+Functions:
+User management: register_user(), login(), logout().
+Task management: add_task(), delete_task(), edit_task(), display_task().
