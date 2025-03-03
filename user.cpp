@@ -18,6 +18,7 @@ void User::deleteTask(const int& id)
     {
         if((tasks[i]->get_tid()) == id)
         {
+            tasks[i]->set_id(0);
             tasks.erase(tasks.begin()+i);
         }
     }
@@ -42,7 +43,6 @@ Task* User::searchTask(const std::string& title)
             return tasks[i];
         }
     }
-    std::cout<<"\nTask not found"<<std::endl;
     return nullptr;
 }
 int User::get_id()const

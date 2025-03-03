@@ -6,6 +6,7 @@ void TaskManager::registerUser(const std::string& username, const std::string& p
     users.push_back(user);
     std::cout<<"\nUser "<<username<<" is created"<<std::endl;
 }
+
 void TaskManager::login(const std::string& username, const std::string& password)
 {
     for(int i=0; i < users.size(); ++i)
@@ -20,6 +21,7 @@ void TaskManager::login(const std::string& username, const std::string& password
         }
     }
 }
+
 void TaskManager::logout(const int& id)
 {
     for(int i = 0; i<users.size(); ++i)
@@ -31,6 +33,7 @@ void TaskManager::logout(const int& id)
         }
     }
 }
+
 void TaskManager::addTaskForUser(Task* task, const int& id)
 {
     for(int i=0; i < users.size(); ++i)
@@ -45,6 +48,7 @@ void TaskManager::addTaskForUser(Task* task, const int& id)
     }
     std::cout<<"User not found!"<<std::endl;
 }
+
 void TaskManager::deleteTaskForUser(const std::string& title, const int& id)
 {
     for(int i = 0; i < users.size(); ++i)
@@ -67,6 +71,7 @@ void TaskManager::deleteTaskForUser(const std::string& title, const int& id)
     {
         if(all_tasks[i] -> get_title() == title)
         {
+            delete all_tasks[i];
             all_tasks.erase(all_tasks.begin()+i);
         }
     }
@@ -82,6 +87,7 @@ void TaskManager::editTaskForUser(const std::string& title, const Task& updatedT
         }
     }
 }
+
 void TaskManager::displayTasksForUser() const
 {
     for(int i = 0; i < users.size(); ++i)

@@ -10,20 +10,18 @@ class TaskManager
     std::vector<Task*> all_tasks;
 
     public:
-    TaskManager():users(0),all_tasks(0) { std::cout << "Default constructor for TaskManager"<<std::endl; };
+    TaskManager():users(0),all_tasks(0) {};
 
     TaskManager(const TaskManager& other)
     {
-        std::vector<User*> users = other.users;
-        std::vector<Task*> all_tasks = other.all_tasks;
-        std::cout<<"Copy for TaskManager"<<std::endl;
+        users = other.users;
+        all_tasks = other.all_tasks;
     }
 
     TaskManager(TaskManager&& other) noexcept
     {
         users = std::move(other.users);
         all_tasks = std::move(other.all_tasks);
-        std::cout<<"Move constructor for TaskManager"<<std::endl;
     }
 
     ~TaskManager()
@@ -32,8 +30,12 @@ class TaskManager
         {
             delete users[i];
         }
-        std::cout<<"Destructor for TaskManager"<<std::endl;
+        for(int i = 0; i < all_tasks.size(); ++i)
+        {
+            delete all_tasks[i];
+        }
     }
+   
 
     void registerUser(const std::string& username, const std::string& password, const int& id);
     void login(const std::string& username, const std::string& password);
